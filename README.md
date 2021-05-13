@@ -1,6 +1,10 @@
 ## Express.js + PlanetScale example
 
-## Setup your database
+Example code for using PlanetScale with
+
+## Usage
+
+### Setup your database
 1. [Install the PlanetScale CLI](https://planetscale.com/cli).
 2. Authenticate the CLI.
 ```
@@ -20,6 +24,13 @@ pscale connect my-app main
 By default this will allow you to connect to your PlanetScale database
 by connecting to `127.0.0.1:3306` with the username `root` and no password (the CLI handled authentication for you).
 You can also set your local address with the following: `pscale connection my-app main --local-addr 127.0.0.1:1337`
+
+### Running the example app
+
+1. Clone this repository.
+2. run `npm install`.
+3. Edit `app.js` to update the credentials to match your PlanetScale connection.
+4. Run `node app.js` to start the app.
 
 ## Connecting in Express.js
 
