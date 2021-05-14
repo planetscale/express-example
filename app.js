@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   connection.query('SELECT * from users', function (err, rows, fields) {
     if (err) throw err
 
-    res.send(rows[0])
+    res.send(rows)
   })
 })
 
