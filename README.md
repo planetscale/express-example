@@ -16,21 +16,17 @@ pscale auth
 pscale database create my-app
 ```
 
-4. Connect to your database's `main` branch.
-```
-pscale connect my-app main
-```
-
-By default this will allow you to connect to your PlanetScale database
-by connecting to `127.0.0.1:3306` with the username `root` and no password (the CLI handled authentication for you).
-You can also set your local address with the following: `pscale connection my-app main --local-addr 127.0.0.1:1337`
-
 ### Running the example app
 
 1. Clone this repository.
 2. run `npm install`.
 3. Edit `app.js` to update the credentials to match your PlanetScale connection.
-4. Run `node app.js` to start the app.
+4. Use pscale to create a connection to your database and start up the app
+```
+pscale connect your-db-name main --execute 'node app.js'
+```
+
+Running pscale connect with `execute` will pass a `DATABASE_URL` to the node application, enabling it to connect to PlanetScale.
 
 ## Connecting in Express.js
 
@@ -40,12 +36,7 @@ You can also set your local address with the following: `pscale connection my-ap
 
 ```JavaScript
 const mysql = require('mysql')
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: '1337', // Make sure this matches the port used by pscale connect.
-  user: 'root', // Username is root, password is empty.
-  database: 'my-app'
-})
+const connection = mysql.createConnection(process.env.DATABASE_URL)
 
 connection.connect()
 
@@ -56,7 +47,6 @@ connection.query('SELECT * from users', function (err, rows, fields) {
 })
 
 connection.end()
-
 ```
 
 ## Deploying to Heroku
@@ -74,11 +64,11 @@ Take note of the values it returns to you.
 pscale service-token add-access your-token-name connect_production_branch read_branch --database your-db-name
 ```
 
-3. Set config vars for your Heroku application.
+3. Set config vars for your Heroku application. You'll use your service token to authenticate to your database.
 ```
 heroku config:set PLANETSCALE_ORG=your-org-name
-heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token
 heroku config:set PLANETSCALE_SERVICE_TOKEN_NAME=your-token-name
+heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token
 ```
 
 4. Add the `pscale` linux distribution to your repository. [Download here](https://github.com/planetscale/cli/releases).
@@ -89,14 +79,15 @@ wget path-to-cli
 tar
 ```
 
-5. Add a procfile that initiates your app using pscale
+5. Add a Procfile that initiates your app using pscale.
 
 Procfile
 ```
 web: ./pscale connect your-db-name main --execute 'node app.js'
 ```
 
-This will create a secure connection to your database and set the `DATABASE_URL` env var. This can then be used in your app to connect.
+6. That's it! Push to Heroku and you'll have a working app.
+
 
 
 
