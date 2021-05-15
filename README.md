@@ -60,13 +60,13 @@ heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token
 heroku buildpacks:add https://github.com/tonyta/heroku-buildpack-custom-binaries#v1.0.0
 ```
 
-5. Add `.custom_binaries` to the root of your repository with the following.
+5. Add `.custom_binaries` file to the root of your repository with the following.
+
+This will install the pscale CLI into your Heroku application.
 
 ```
 pscale: https://pscale-download.preview.planetscale.com/
 ```
-
-This will install the pscale CLI into your repository
 
 6. Add a Procfile that initiates your app using pscale. This is the command Heroku will run when starting the app.
 
