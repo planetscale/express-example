@@ -43,7 +43,7 @@ Take note of the values it returns to you.
 
 2. Grant that token access to your database.
 ```
-pscale service-token add-access your-token-name connect_production_branch read_branch --database your-db-name
+pscale service-token add-access your-token-name connect_production_branch --database your-db-name
 ```
 
 3. Set config vars for your Heroku application. You'll use your service token to authenticate to your database.
