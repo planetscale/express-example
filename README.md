@@ -1,6 +1,6 @@
 ## Express.js + PlanetScale example
 
-Example code for using PlanetScale with
+Example Express.js/Node app using PlanetScale.
 
 ## Usage
 
@@ -13,46 +13,28 @@ pscale auth
 
 3. Create a new database.
 ```
-pscale database create my-app
+pscale database create your-db-name
 ```
 
 ### Running the example app
 
 1. Clone this repository.
-2. run `npm install`.
-3. Edit `app.js` to update the credentials to match your PlanetScale connection.
-4. Use pscale to create a connection to your database and start up the app
+2. run `git clone https://github.com/planetscale/express-example.git`
+3. `cd express-example`
+4. run `npm install`.
+5. Use pscale to create a connection to your database and start up the app
+
 ```
 pscale connect your-db-name main --execute 'node app.js'
 ```
 
-Running pscale connect with `execute` will pass a `DATABASE_URL` to the node application, enabling it to connect to PlanetScale.
-
-## Connecting in Express.js
-
-1. `npm install mysql --save`
-
-2. Create a connection to your database.
-
-```JavaScript
-const mysql = require('mysql')
-const connection = mysql.createConnection(process.env.DATABASE_URL)
-
-connection.connect()
-
-connection.query('SELECT * from users', function (err, rows, fields) {
-  if (err) throw err
-
-  res.send(rows[0])
-})
-
-connection.end()
-```
+Running pscale connect with `execute` will pass a `DATABASE_URL` to the node application, enabling it to connect to PlanetScale. Check `app.js` to see how the `DATABASE_URL` is used to establish the connection.
 
 ## Deploying to Heroku
 We'll use the pscale CLI on Heroku to establish a secure connection to your database.
 
 1. Create a PlanetScale service token
+
 ```
 pscale service-token create
 ```
@@ -72,6 +54,11 @@ heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token
 ```
 
 4. Add the `pscale` linux distribution to your repository. [Download here](https://github.com/planetscale/cli/releases).
+4. Add the custom binaries build pack to your Heroku application
+
+```
+heroku buildpacks:add https://github.com/tonyta/heroku-buildpack-custom-binaries#v1.0.0
+```
 
 ```
 TODO
@@ -79,17 +66,10 @@ wget path-to-cli
 tar
 ```
 
-5. Add a Procfile that initiates your app using pscale.
+5. Add a Procfile that initiates your app using pscale. This is the command Heroku will run when starting the app.
 
-Procfile
 ```
 web: ./pscale connect your-db-name main --execute 'node app.js'
 ```
 
 6. That's it! Push to Heroku and you'll have a working app.
-
-
-
-
-
-

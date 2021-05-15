@@ -1,1 +1,1 @@
-web: ./pscale connect node main --execute 'node app.js'
+web: pscale connect node main --execute 'node app.js'
