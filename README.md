@@ -8,7 +8,7 @@ Example Express.js/Node app using PlanetScale.
 1. [Install the PlanetScale CLI](https://planetscale.com/cli).
 2. Authenticate the CLI.
 ```
-pscale auth
+pscale auth login
 ```
 
 3. Create a new database.
@@ -28,7 +28,7 @@ pscale database create your-db-name
 pscale connect your-db-name main --execute 'node app.js'
 ```
 
-Running pscale connect with `execute` will pass a `DATABASE_URL` to the node application, enabling it to connect to PlanetScale. Check `app.js` to see how the `DATABASE_URL` is used to establish the connection.
+Running pscale connect with `execute` will pass a `DATABASE_URL` environment variable to the node application, enabling it to connect to PlanetScale. Check `app.js` to see how the `DATABASE_URL` is used to establish the connection.
 
 ## Deploying to Heroku
 We'll use the pscale CLI on Heroku to establish a secure connection to your database.
@@ -39,7 +39,7 @@ We'll use the pscale CLI on Heroku to establish a secure connection to your data
 pscale service-token create
 ```
 
-Take note of the values it returns to you.
+Take note of the service token name and value it returns to you.
 
 2. Grant that token access to your database.
 ```
@@ -51,10 +51,10 @@ pscale service-token add-access your-token-name connect_production_branch --data
 ```
 heroku config:set PLANETSCALE_ORG=your-org-name
 heroku config:set PLANETSCALE_SERVICE_TOKEN_NAME=your-token-name
-heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token
+heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token-value
 ```
 
-4. Add the custom binaries build pack to your Heroku application
+4. Add the custom binaries buildpack to your Heroku application
 
 ```
 heroku buildpacks:add https://github.com/tonyta/heroku-buildpack-custom-binaries#v1.0.0
