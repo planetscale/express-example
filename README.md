@@ -65,8 +65,10 @@ heroku buildpacks:add https://github.com/tonyta/heroku-buildpack-custom-binaries
 This will install the pscale CLI into your Heroku application.
 
 ```
-pscale: https://pscale-download.preview.planetscale.com/
+pscale: https://github.com/planetscale/cli/releases/download/v0.36.0/pscale_0.36.0_linux_amd64.tar.gz
 ```
+
+_Note:_ You can grab the URL to the [latest release here](https://github.com/planetscale/cli/releases).
 
 6. Add a Procfile that initiates your app using pscale. This is the command Heroku will run when starting the app.
 
