@@ -54,26 +54,20 @@ heroku config:set PLANETSCALE_SERVICE_TOKEN_NAME=your-token-name
 heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token-value
 ```
 
-4. Add the custom binaries buildpack to your Heroku application
+4. Add the PlanetScale buildpack to your Heroku application:
 
 ```
-heroku buildpacks:add https://github.com/tonyta/heroku-buildpack-custom-binaries#v1.0.0
+heroku buildpacks:add https://github.com/planetscale/heroku-buildpack-planetscale
 ```
 
-5. Add `.custom_binaries` file to the root of your repository with the following.
+This command will install the latest `pscale` CLI into your Heroku application. You can specify a CLI version by setting `PLANETSCALE_CLI_VERSION`
 
-This will install the pscale CLI into your Heroku application.
+_Note:_ Find the latest [CLI releases here.](https://github.com/planetscale/cli/releases).
 
-```
-pscale: https://github.com/planetscale/cli/releases/download/v0.36.0/pscale_0.36.0_linux_amd64.tar.gz
-```
-
-_Note:_ You can grab the URL to the [latest release here](https://github.com/planetscale/cli/releases).
-
-6. Add a Procfile that initiates your app using pscale. This is the command Heroku will run when starting the app.
+5. Add a Procfile that initiates your app using pscale. This is the command Heroku will run when starting the app.
 
 ```
 web: pscale connect your-db-name main --execute 'node app.js'
 ```
 
-7. That's it! Push to Heroku and you'll have a working app.
+6. That's it! Push to Heroku and you'll have a working app.
