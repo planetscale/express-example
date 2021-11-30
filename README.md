@@ -5,69 +5,62 @@ Example Express.js/Node app using PlanetScale.
 ## Usage
 
 ### Setup your database
-1. [Install the PlanetScale CLI](https://planetscale.com/cli).
-2. Authenticate the CLI.
-```
+
+Install the [PlanetScale CLI](https://planetscale.com/cli). Then, run the following command to log in.
+
+```bash
 pscale auth login
 ```
 
-3. Create a new database.
-```
-pscale database create your-db-name
+Create a new database.
+
+```bash
+pscale database create <YOUR_DB_NAME>
 ```
 
 ### Running the example app
 
-1. Clone this repository.
-2. run `git clone https://github.com/planetscale/express-example.git`
-3. `cd express-example`
-4. run `npm install`.
-5. Use pscale to create a connection to your database and start up the app
+#### 1. Setup the project
 
-```
-pscale connect your-db-name main --execute 'node app.js'
-```
+Clone the repository.
 
-Running pscale connect with `execute` will pass a `DATABASE_URL` environment variable to the node application, enabling it to connect to PlanetScale. Check `app.js` to see how the `DATABASE_URL` is used to establish the connection.
+```bash
+git clone https://github.com/planetscale/express-example.git
+````
 
-## Deploying to Heroku
-We'll use the pscale CLI on Heroku to establish a secure connection to your database.
+Change into the application directory.
 
-1. Create a PlanetScale service token
-
-```
-pscale service-token create
+```bash
+cd express-example
 ```
 
-Take note of the service token name and value it returns to you.
+Install dependencies.
 
-2. Grant that token access to your database.
-```
-pscale service-token add-access your-token-name connect_production_branch --database your-db-name
-```
-
-3. Set config vars for your Heroku application. You'll use your service token to authenticate to your database.
-
-```
-heroku config:set PLANETSCALE_ORG=your-org-name
-heroku config:set PLANETSCALE_SERVICE_TOKEN_NAME=your-token-name
-heroku config:set PLANETSCALE_SERVICE_TOKEN=your-token-value
+```bash
+npm install
 ```
 
-4. Add the PlanetScale buildpack to your Heroku application:
+#### 2. Create a new password and connection string
 
-```
-heroku buildpacks:add https://github.com/planetscale/heroku-buildpack-planetscale
-```
+You can create a new password in the PlanetScale UI as documented [here](https://docs.planetscale.com/concepts/connection-strings#creating-a-password), or you can use the CLI.
 
-This command will install the latest `pscale` CLI into your Heroku application. You can specify a CLI version by setting `PLANETSCALE_CLI_VERSION`
-
-_Note:_ Find the latest [CLI releases here.](https://github.com/planetscale/cli/releases).
-
-5. Add a Procfile that initiates your app using pscale. This is the command Heroku will run when starting the app.
-
-```
-web: pscale connect your-db-name main --execute 'node app.js'
+```bash
+pscale password create <YOUR_DB_NAME> main <YOUR_PASSWORD_NAME>
 ```
 
-6. That's it! Push to Heroku and you'll have a working app.
+Then, create your connection string with the following format.
+
+```
+mysql://<USERNAME>:<PLAIN_TEXT_PASSWORD>@<ACCESS_HOST_URL>/<YOUR_DB_NAME>?ssl=true
+```
+
+#### 3. Update environment variables
+
+Make a copy of the `.env.example` file as `.env` and update the `DATABASE_URL` property with your connection string
+
+#### 4. Run the application.
+
+```bash
+node app.js
+```
+
