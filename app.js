@@ -9,7 +9,7 @@ const connection = mysql.createConnection(process.env.DATABASE_URL)
 connection.connect()
 
 app.get('/', (req, res) => {
-  connection.query('SELECT VERSION()', function (err, rows, fields) {
+  connection.query('SELECT * FROM users', function (err, rows, fields) {
     if (err) throw err
 
     res.send(rows)
