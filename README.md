@@ -85,7 +85,7 @@ Go to [http://localhost:3000](http://localhost:3000) to see the data from your `
 
 Congratulations! You successfully connected your Node.js and Express.js application to a PlanetScale database.
 
-### 2. Using a Connection String
+### Using a Connection String
 
 There are 2 ways to generate a new password from which you can derive your connection string.
 
@@ -100,7 +100,7 @@ Make sure you save this information, as you won't be able to see the password ag
 
 After generating your password, you can find the following attributes in the console output from the previous step:
 
-- Name (same as `<YOUR_PASSWORD_NAME>` from above)
+- Name (same as `<PASSWORD_NAME>` from above)
 - Username
 - Access Host URL
 - Role
