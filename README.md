@@ -109,7 +109,7 @@ After generating your password, you can find the following attributes in the con
 You can derive your connection string with the following format.
 
 ```text
-mysql://<USERNAME>:<PLAIN_TEXT_PASSWORD>@<ACCESS_HOST_URL>/<YOUR_DB_NAME>?ssl=true
+mysql://<USERNAME>:<PLAIN_TEXT_PASSWORD>@<ACCESS_HOST_URL>/<DATABASE_NAME>?ssl=true
 ```
 
 Make a copy of the `.env.example` file as `.env` and update the `DATABASE_URL` property with your connection string.
