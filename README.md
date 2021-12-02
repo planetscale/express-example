@@ -26,6 +26,8 @@ pscale database create <DATABASE_NAME>
 pscale shell <DATABASE_NAME> <BRANCH_NAME>
 ```
 
+You may need to [install the MySQL command line client](https://docs.planetscale.com/reference/planetscale-environment-setup) if you haven't already.
+
 A branch, `main`, was automatically created when you created your database, so you can use that for `BRANCH_NAME`.
 
 4. Once in the MySQL shell, create a `users` table:
