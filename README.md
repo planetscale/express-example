@@ -108,7 +108,7 @@ After generating your password, you can find the following attributes in the con
 - Role
 - Plain Text (password)
 
-Make a copy of the `.env.example` file as `.env` and update the `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` properties using the properties of the password you just generated.
+Make a copy of the `.env.example` file as `.env` and update the `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` values using the properties of the password you just generated.
 
 Lastly, run the app with the following command.
 
