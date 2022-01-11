@@ -16,6 +16,8 @@ let connection = {};
   OPTION 2:
     Use if you're connecting with client certificates via CLI (see docs)
     https://docs.planetscale.com/tutorials/connect-nodejs-app#using-client-certificates-with-the-cli
+    
+  Feel free to remove the if/else statement once you decide which you'll use
 */
 
 if (process.env.DATABASE_HOST) {
