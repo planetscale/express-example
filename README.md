@@ -108,7 +108,13 @@ After generating your password, you can find the following attributes in the con
 - Role
 - Plain Text (password)
 
-Make a copy of the `.env.example` file as `.env` and update the `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` values using the properties of the password you just generated.
+You can derive your connection string with the following format.
+
+```text
+mysql://<USERNAME>:<PLAIN_TEXT_PASSWORD>@<ACCESS_HOST_URL>/<DATABASE_NAME>?ssl={"rejectUnauthorized":true}
+```
+
+Make a copy of the `.env.example` file as `.env` and update the `DATABASE_URL` property with your connection string.
 
 Lastly, run the app with the following command.
 
