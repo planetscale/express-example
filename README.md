@@ -26,7 +26,7 @@ pscale database create <DATABASE_NAME>
 pscale shell <DATABASE_NAME> <BRANCH_NAME>
 ```
 
-You may need to [install the MySQL command line client](https://docs.planetscale.com/reference/planetscale-environment-setup) if you haven't already.
+You may need to [install the MySQL command line client](https://planetscale.com/docs/reference/planetscale-environment-setup) if you haven't already.
 
 A branch, `main`, was automatically created when you created your database, so you can use that for `BRANCH_NAME`.
 
@@ -91,7 +91,7 @@ Congratulations! You successfully connected your Node.js and Express.js applicat
 
 There are 2 ways to generate a new password from which you can derive your connection string.
 
-1. The PlanetScale UI as documented [here](https://docs.planetscale.com/concepts/connection-strings#creating-a-password)
+1. The PlanetScale UI as documented [here](https://planetscale.com/docs/concepts/connection-strings#creating-a-password)
 2. The PlanetScale CLI with the following command:
 
 ```bash
