@@ -1,6 +1,6 @@
 ## Express.js + PlanetScale example
 
-> **Note:** This example uses the PlanetScale CLI MySQL shell and `mysql://` connection strings for PlanetScale Vitess/MySQL. PlanetScale also offers managed PostgreSQL. For more information and examples, see the [PlanetScale Postgres documentation](https://planetscale.com/docs/postgres).
+> **Note:** This example targets PlanetScale Vitess/MySQL. PlanetScale also offers managed PostgreSQL. For more information, see the [PlanetScale Postgres documentation](https://planetscale.com/docs/postgres).
 
 Example Express.js/Node app using PlanetScale.
 
